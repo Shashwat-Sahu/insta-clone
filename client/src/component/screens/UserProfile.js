@@ -93,9 +93,9 @@ const UserProfile = ()=>{
                     <h4>{userProfile.user.name}</h4>
                     <h5>{userProfile.user.email}</h5>
                     <div style={{display:"flex",justifyContent:"space-around",width:"108%"}}>
-                        <h5 style={{fontSize:"1.2em"}}>{userProfile.posts.length} posts</h5>
-                        <h5 style={{fontSize:"1.2em"}}>{userProfile.user.followers.length} followers</h5>
-                        <h5 style={{fontSize:"1.2em"}}>{userProfile.user.following.length} following</h5>
+                        <h5 style={{fontSize:"1em"}}>{userProfile.posts.length} posts</h5>
+                        <h5 style={{fontSize:"1em"}}>{userProfile.user.followers.length} followers</h5>
+                        <h5 style={{fontSize:"1em"}}>{userProfile.user.following.length} following</h5>
                     </div>
                     {
                         showFollow?<button class="waves-effect waves-light btn #1565c0 blue darken-3 white-text" onClick={()=>{
