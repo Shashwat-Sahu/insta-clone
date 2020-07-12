@@ -26,7 +26,7 @@ const NavBar = ()=>{
         <nav>
     <div className="nav-wrapper white">
       <Link to={state?"/":"/signin"} className="brand-logo left">Instagram</Link>
-      <ul id="nav-mobile" className="right logout">
+      <ul id="nav-mobile" className="right hide-on-med-and-down logout">
         <RenderList />
       </ul>
     </div>
