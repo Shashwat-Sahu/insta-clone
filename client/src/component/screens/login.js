@@ -23,7 +23,7 @@ const Signin = ()=>{
         })
     }
         ).then(res=>res.json()).then(data=>{
-            console.log(data)
+            
             if(data.error)
             {
                 M.toast({html: data.error,classes:"#d32f2f red darken-2"})

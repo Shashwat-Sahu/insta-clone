@@ -45,7 +45,7 @@ router.post('/createpost',requiredLogin,(req,res)=>{
 })
 
 router.get("/mypost",requiredLogin,(req,res)=>{
-    Post.find({postedby:req.user._id}).populate("postedby","_id name").then(mypost=>{
+    Post.find({postedby:req.user._id}).populate("postedby","_id name pic").then(mypost=>{
         res.json({mypost})
     }).catch(err=>{
         console.log(err)
@@ -58,7 +58,7 @@ router.put("/like",requiredLogin,(req,res)=>{
             new:true
         }
     )
-    
+    .populate("postedby","_id name pic")
     .exec((err,result)=>{
         if(err){
             return res.status(422).json({error})
@@ -73,7 +73,7 @@ router.put("/unlike",requiredLogin,(req,res)=>{
         $pull:{likes:req.user._id}},{
             new:true
         }
-    ).populate("postedby","_id name").exec((err,result)=>{
+    ).populate("postedby","_id name pic").exec((err,result)=>{
         if(err){
             return res.status(422).json({error})
         }
