@@ -144,6 +144,7 @@ const Home = ()=>{
     return(
         
         <div className="home">
+            <h6>{data.length==0?"loading":""}</h6>
             {
                 
                 data.map(item=>{

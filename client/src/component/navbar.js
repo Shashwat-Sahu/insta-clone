@@ -7,12 +7,12 @@ const NavBars = ()=>{
   const history = useHistory()
   const RenderList = () =>{
     if(state){
-      return [<NavItem>
-            <Link to="/profile">Profile</Link>
-        </NavItem>,
-        <NavItem><Link to="/create">Create Post</Link></NavItem>
+      return [<Link to="/profile"><NavItem>
+            Profile
+        </NavItem></Link>,
+        <Link to="/create"><NavItem>Create Post</NavItem></Link>
       ,
-      <NavItem><Link to="/myfollowingspost">My following Post</Link></NavItem>,
+      <Link to="/myfollowingspost"><NavItem>My following Post</NavItem></Link>,
       <NavItem> <button class="waves-effect waves-light btn #1565c0 blue darken-3 white-text" onClick={()=>{
         localStorage.clear();
         dispatch({type:"CLEAR"})
@@ -21,8 +21,8 @@ const NavBars = ()=>{
     }
     else {
       return[
-        <NavItem><Link to="/signin">Login</Link></NavItem>,
-        <NavItem><Link to="/signup">SignUp</Link></NavItem>
+        <Link to="/signin"><NavItem>Login</NavItem></Link>,
+        <Link to="/signup"><NavItem>SignUp</NavItem></Link>
       ]
     }
   }
