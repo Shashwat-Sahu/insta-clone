@@ -1,12 +1,14 @@
 import React,{useEffect, useState, useContext} from 'react'
 import { UserContext } from '../../App'
 import {useParams} from 'react-router-dom'
+import {Modal,Button} from "react-materialize"
 
 const UserProfile = ()=>{
     const [userProfile,setuserProfile] = useState(null)
     const {state,dispatch} = useContext(UserContext)
     const {userid} = useParams()
     const [showFollow,setShowFollow] = useState(state?!state.following.includes(userid):true)
+    const [post,setpost] = useState({})
     useEffect(()=>{
         fetch(`/user/${userid}`,{
             headers:{
@@ -87,7 +89,7 @@ const UserProfile = ()=>{
                     borderBottom:"1px solid gray"
                 }}>
                 <div>
-                    <img style={{width:"180px",height:"180px",borderRadius:"50%"}} src={userProfile.user.pic}/>
+                    <img  href="#modal1" className="modal-trigger"node="img" onClick={()=>setpost({photo:userProfile.user.pic})} style={{width:"180px",height:"180px",borderRadius:"50%"}} src={userProfile.user.pic}/>
                 </div>
                 <div>
                     <h4>{userProfile.user.name}</h4>
@@ -114,8 +116,37 @@ const UserProfile = ()=>{
             <div className="gallery">
                 {
                     userProfile.posts.slice(0).reverse().map(item=>{
-                        return (
-                            <img key ={item._id} className="item" src={item.photo} alt={item.title} />
+                        return (<>
+                            <img href="#modal1" node="img" key ={item._id} className="item modal-trigger" onClick={()=>setpost(item)} src={item.photo} alt={item.title}/>
+                            <Modal
+                                actions={[
+                                <Button flat modal="close" node="button" waves="green">Close</Button>
+                                ]}
+                                bottomSheet={false}
+                                fixedFooter={false}
+                                header={post.title}
+                                id="modal1"
+                                open={false}
+                                options={{
+                                dismissible: true,
+                                endingTop: '10%',
+                                inDuration: 250,
+                                onCloseEnd: null,
+                                onCloseStart: null,
+                                onOpenEnd: null,
+                                onOpenStart: null,
+                                opacity: 0.5,
+                                outDuration: 250,
+                                preventScrolling: true,
+                                startingTop: '4%'
+                                }}
+
+                            >
+                                
+                                <img src={post.photo} className="post"/>
+                                
+                            </Modal>
+                            </>
                             )
                     })
                 }

@@ -1,13 +1,49 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import {Link, useHistory} from "react-router-dom"
 import {UserContext} from "../App"
-import {Navbar,NavItem,Icon} from "react-materialize"
+import {Navbar,NavItem,Icon,Modal,Button} from "react-materialize"
 const NavBars = ()=>{
   const {state,dispatch} = useContext(UserContext)
   const history = useHistory()
+  const [search,setSearch] = useState('')
   const RenderList = () =>{
     if(state){
-      return [<Link to="/profile"><NavItem>
+      return [
+      
+        <NavItem><Modal
+        actions={[
+          <Button flat modal="close" node="button" waves="green">Close</Button>
+        ]}
+        bottomSheet={false}
+        fixedFooter={false}
+        header="Search User"
+        id="Modal-0"
+        open={false}
+        options={{
+          dismissible: true,
+          endingTop: '10%',
+          inDuration: 250,
+          onCloseEnd: null,
+          onCloseStart: null,
+          onOpenEnd: null,
+          onOpenStart: null,
+          opacity: 0.5,
+          outDuration: 250,
+          preventScrolling: true,
+          startingTop: '4%'
+        }}
+        
+        trigger={<i class="material-icons" node="i">search</i>}
+      >
+        <input type="text" value={search} placeholder="Search" onChange={(e)=>setSearch(e.target.value)}  />
+        <ul className="collection">
+          <li className="collection-item">Alvin</li>
+          <li className="collection-item">Alvin</li>
+          <li className="collection-item">Alvin</li>
+          <li className="collection-item">Alvin</li>
+        </ul>
+        </Modal></NavItem>,
+      <Link to="/profile"><NavItem>
             Profile
         </NavItem></Link>,
         <Link to="/create"><NavItem>Create Post</NavItem></Link>

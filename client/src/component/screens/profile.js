@@ -1,5 +1,6 @@
 import React,{useEffect, useState, useContext} from 'react'
 import { UserContext } from '../../App'
+import {Modal,Button} from "react-materialize"
 
 const Profile = ()=>{
     const [mypics,setMypics] = useState([])
@@ -7,6 +8,7 @@ const Profile = ()=>{
     const [image,setImage] = useState("") 
     const [url,setURL] = useState(undefined)
     const [set,setSetting] = useState(0)
+    const [post,setpost] = useState({})
     useEffect(()=>{
         fetch("/mypost",{
             headers:{
@@ -21,6 +23,7 @@ const Profile = ()=>{
         })
 
     },[])
+    
     useEffect(()=>{
         if(image)
         {
@@ -71,7 +74,10 @@ const Profile = ()=>{
                     borderBottom:"1px solid gray"
                 }}>
                 <div>
-                    <img style={{width:"180px",height:"180px",borderRadius:"50%",display:"block"}} src={state?state.pic:"loading"}/>
+                    <img href="#modal1" className="modal-trigger" node="img" onClick={()=>setpost({photo:state.pic})} style={{width:"180px",height:"180px",borderRadius:"50%",display:"block"}} src={state?state.pic:"loading"}/>
+                    
+                    
+                    
                     <div className="file-field input-field" style={{width:"70%",display:"inline-block",marginRight:"4%"}}>
             <div className="btn">
             <span>UPDATE PROFILE PIC</span>
@@ -113,8 +119,38 @@ const Profile = ()=>{
             <div className="gallery">
                 {
                     mypics.slice(0).reverse().map(item=>{
-                        return (
-                            <img key ={item._id} className="item" src={item.photo} alt={item.title} />
+                        
+                        return (<>
+                            <img href="#modal1" node="img" key ={item._id} className="item modal-trigger" onClick={()=>setpost(item)} src={item.photo} alt={item.title}/>
+                            <Modal
+                                actions={[
+                                <Button flat modal="close" node="button" waves="green">Close</Button>
+                                ]}
+                                bottomSheet={false}
+                                fixedFooter={false}
+                                header={post.title}
+                                id="modal1"
+                                open={false}
+                                options={{
+                                dismissible: true,
+                                endingTop: '10%',
+                                inDuration: 250,
+                                onCloseEnd: null,
+                                onCloseStart: null,
+                                onOpenEnd: null,
+                                onOpenStart: null,
+                                opacity: 0.5,
+                                outDuration: 250,
+                                preventScrolling: true,
+                                startingTop: '4%'
+                                }}
+
+                            >
+                                
+                                <img src={post.photo} className="post"/>
+                                
+                            </Modal>
+                            </>
                             )
                     })
                 }
