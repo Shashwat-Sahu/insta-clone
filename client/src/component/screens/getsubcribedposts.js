@@ -146,7 +146,7 @@ const Home = ()=>{
         <div className="home">
             {
                 
-                data.slice(0).reverse().map(item=>{
+                data.map(item=>{
                     console.log(state)
                     return (
                         
