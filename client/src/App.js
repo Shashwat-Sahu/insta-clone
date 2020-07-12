@@ -1,5 +1,5 @@
 import React,{useEffect,createContext,useReducer,useContext} from 'react';
-import Navbar from './component/navbar'
+import Navbars from './component/navbar'
 import "./App.css"
 import {BrowserRouter,Route,Switch,useHistory} from 'react-router-dom'
 import Home from "./component/screens/home"
@@ -58,7 +58,7 @@ function App() {
   return (
     <UserContext.Provider value={{state,dispatch}}>
     <BrowserRouter>
-    <Navbar/>
+    <Navbars/>
     <Routing/>
     </BrowserRouter>
     </UserContext.Provider>
