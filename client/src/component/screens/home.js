@@ -13,7 +13,7 @@ const Home = ()=>{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
         }).then(res=>res.json()).then(result=>{
-            console.log(state)
+            
            setData(result.posts)
         })
     },[])
