@@ -41,9 +41,9 @@ const Signup = ()=>{
         }
         ,
         body:JSON.stringify({
-            name,
+            name:name.toLowerCase(),
             password,
-            email,
+            email:email.toLowerCase(),
             pic:url
         })
     }
