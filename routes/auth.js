@@ -25,7 +25,7 @@ router.post("/signup",(req,res)=>{
     User.findOne({email:email}).then((savedUser)=>{
         if(savedUser)
         {
-            return res.status(422),json({error:"user already exists with that email"})
+            return res.status(422).json({error:"user already exists with that email"})
         }
         
         bcrypt.hash(password,12).then(hashedpassword=>{

@@ -7,6 +7,7 @@ const Signup = ()=>{
     const [email,setEmail] = useState("")
     const [image,setImage] = useState("")
     const [url,setURL] = useState(undefined)
+    const [disp,setDisp] = useState("")
     const history = useHistory()
     useEffect(()=>{
         if(url)
@@ -28,6 +29,7 @@ const Signup = ()=>{
           })
     }
     const uploadFields = () =>{
+        setDisp(1)
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             M.toast({html: 'Invalid Email!',classes:"#d32f2f red darken-2"})
             return 
@@ -49,6 +51,7 @@ const Signup = ()=>{
             if(data.error)
             {
                 M.toast({html: data.error,classes:"#d32f2f red darken-2"})
+                setDisp(0)
             }
             else{
                 M.toast({html: data.message,classes:"#43a047 green darken-1"})
@@ -90,6 +93,9 @@ const Signup = ()=>{
             <h6>
             <Link to="/signin" >Already have an account ?</Link>
             </h6>
+            <div className="progress" id="progress-bar" style={{display: disp==1?"block":"none"}}>
+          <div className="indeterminate"></div>
+      </div>
 </div>
     </div>
     )
