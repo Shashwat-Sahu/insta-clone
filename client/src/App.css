@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+body{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
 a{
   color:black !important;

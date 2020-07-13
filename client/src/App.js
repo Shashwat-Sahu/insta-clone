@@ -11,6 +11,8 @@ import {reducer,initialState} from './reducers/userReduce'
 import UserProfile from "./component/screens/UserProfile"
 import Subscribedposts from "./component/screens/getsubcribedposts"
 
+
+
 export const UserContext = createContext()
 const Routing = ()=>{
   const {state,dispatch} = useContext(UserContext)
@@ -61,6 +63,7 @@ function App() {
     <Navbars/>
     <Routing/>
     </BrowserRouter>
+    
     </UserContext.Provider>
   );
 }

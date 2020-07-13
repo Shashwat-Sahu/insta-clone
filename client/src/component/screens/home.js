@@ -3,11 +3,12 @@ import {UserContext} from "../../App"
 import M from 'materialize-css'
 import { Collapsible, CollapsibleItem ,Icon} from 'react-materialize';
 import {Link} from 'react-router-dom'
+import Confettibackground from "./confettis"
 
 const Home = ()=>{
     const [data,setData] = useState([])
     const {state,dispatch} = useContext(UserContext)
-    
+    const [confitt,setconfettis] = useState("0")
     useEffect(()=>{
         fetch("/allpost",{
             headers:{
@@ -18,6 +19,7 @@ const Home = ()=>{
            setData(result.posts)
         })
     },[])
+
     
     const likePost= (id)=>{
         fetch("/like",{
@@ -41,6 +43,9 @@ const Home = ()=>{
                 }
             })
             setData(newData)
+            setTimeout(() => {
+                setconfettis("0")
+            }, 5000);
         })
     }
     const unlikePost= (id)=>{
@@ -139,7 +144,7 @@ const Home = ()=>{
     
             
     return(
-        
+        <>
         <div className="home">
             <h3 className="brand-logo" style={{textAlign:"center"}}>{data.length==0?<div><div class="preloader-wrapper small active">
     <div class="spinner-layer spinner-green-only">
@@ -171,12 +176,14 @@ const Home = ()=>{
                     {
                         
                 
-                            item.likes.includes(state._id)?<i className="material-icons" style={{color:"red",cursor:"pointer"}} onClick={()=>unlikePost(item._id)}>favorite</i>
-                             :<i className="material-icons" style={{color:"red",cursor:"pointer"}} onClick={()=>likePost(item._id)}>favorite_border</i>
+                            item.likes.includes(state._id)?
+                            <i className="material-icons" style={{color:"red",cursor:"pointer"}} onClick={()=>unlikePost(item._id)}>favorite</i>
+                             :<i className="material-icons" style={{color:"red",cursor:"pointer"}} onClick={()=>{setconfettis("1");likePost(item._id) ;
+                            }}>favorite_border</i>
                     
                     }
                      
-                      
+                    
                         
                     
                 
@@ -224,6 +231,9 @@ const Home = ()=>{
             }
             
         </div>
+        
+            {confitt=="1"?<Confettibackground/>:<></>}
+        </>
     )
 }
 
