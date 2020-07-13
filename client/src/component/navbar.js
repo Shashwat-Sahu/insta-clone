@@ -14,7 +14,7 @@ const NavBars = ()=>{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        name:users
+        name:users.toLowerCase()
       })
     }).then(res=>res.json()).then(result=>{
       console.log(result)
