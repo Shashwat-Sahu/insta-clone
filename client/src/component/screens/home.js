@@ -7,13 +7,14 @@ import {Link} from 'react-router-dom'
 const Home = ()=>{
     const [data,setData] = useState([])
     const {state,dispatch} = useContext(UserContext)
+    
     useEffect(()=>{
         fetch("/allpost",{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
         }).then(res=>res.json()).then(result=>{
-            
+            console.log(result)
            setData(result.posts)
         })
     },[])
@@ -92,22 +93,18 @@ const Home = ()=>{
         })
     }
     const deletePost = (postId)=>{
+        console.log(postId)
         fetch(`/deletepost/${postId}`,{
             method:"delete",
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
         }).then(res=>res.json()).then(result=>{
-        
-            const newData = data.map(item=>{
-                if(result._id==item._id)
-                {
-                    return result
-                }
-                else{
-                    return item
-                }
+            console.log(result)
+            const newData = data.filter(item=>{
+                return item._id !==result._id
             })
+            
             setData(newData)
         })
     }
@@ -144,7 +141,17 @@ const Home = ()=>{
     return(
         
         <div className="home">
-            <h6>{data.length==0?"loading":""}</h6>
+            <h3 className="brand-logo" style={{textAlign:"center"}}>{data.length==0?<div><div class="preloader-wrapper small active">
+    <div class="spinner-layer spinner-green-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div><br/>
+  </div><h4>Loading</h4></div>:""}</h3>
             {
                 
                 data.map(item=>{
@@ -152,8 +159,11 @@ const Home = ()=>{
                     return (
                         
                         <div className="card home-card" key={item._id}>
-                <h5 style={{display:"inline-block"}}><Link to={item.postedby._id!=state._id?"/profile/"+item.postedby._id:"/profile"}><img src={item.postedby.pic} style={{width:"8%",marginRight:"2%",borderRadius:"50%"}}/>{item.postedby.name}</Link></h5>
-               { item.postedby._id == state._id?<i class="material-icons" style={{float:"right",cursor:"pointer"}} onClick={()=>deletePost(item._id)}>delete</i>:<i></i>}
+                            { item.postedby._id === state._id?<i className="material-icons" style={{cursor:"pointer",float:"right"}} onClick={()=>{console.log("hell");deletePost(item._id)}}>delete</i>:<i></i>}
+                <h5 style={{display:"inline-block"}}><Link to={item.postedby._id!=state._id?"/profile/"+item.postedby._id:"/profile"}>
+                    <img src={item.postedby.pic} style={{width:"8%",marginRight:"2%",borderRadius:"50%"}}/>{item.postedby.name}
+                    </Link></h5>
+               
                 <div className="card-image">
                     <img src={item.photo}/>
                 </div>

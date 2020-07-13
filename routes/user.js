@@ -62,4 +62,12 @@ router.put("/unfollower",requiredLogin,(req,res)=>
         }
     )
 })
+router.post("/search-user",(req,res)=>{
+    let searchregex = new RegExp("^"+req.body.name)
+    User.find({name:{$regex:searchregex}}).select("_id name email pic").then(user=>{
+        res.json(user)
+    }).catch(err=>{
+        return res.status(422).json({error:err})
+    }) 
+})
 module.exports = router

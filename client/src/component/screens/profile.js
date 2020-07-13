@@ -122,7 +122,12 @@ const Profile = ()=>{
                         
                         return (<>
                             <img href="#modal1" node="img" key ={item._id} className="item modal-trigger" onClick={()=>setpost(item)} src={item.photo} alt={item.title}/>
-                            <Modal
+                            
+                            </>
+                            )
+                    })
+                }
+                <Modal
                                 actions={[
                                 <Button flat modal="close" node="button" waves="green">Close</Button>
                                 ]}
@@ -150,10 +155,6 @@ const Profile = ()=>{
                                 <img src={post.photo} className="post"/>
                                 
                             </Modal>
-                            </>
-                            )
-                    })
-                }
              </div>   
             
         </div>
