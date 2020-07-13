@@ -27,7 +27,7 @@ const NavBars = ()=>{
       
         <Navbar
   alignLinks="right"
-  brand={<Link to={state?"/":"/signin"} className="brand-logo">Instagram</Link>}
+  brand={<Link to={state?"/":"/signin"} className="brand-logo">Instagram Clone</Link>}
   id="mobile-nav"
   menuIcon={<Icon>menu</Icon>}
   options={{
