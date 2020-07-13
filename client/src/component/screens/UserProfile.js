@@ -81,7 +81,7 @@ const UserProfile = ()=>{
     }
     return(
         <>
-        {userProfile?<div style={{maxWidth:"700px",margin:"0px auto"}}>
+        {userProfile?<div style={{maxWidth:"700px",margin:"0px auto",color:"white"}}>
             <div style={{
                     display:"flex",
                     justifyContent:"space-around",
