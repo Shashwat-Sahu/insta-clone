@@ -42,13 +42,13 @@ const Routing = ()=>{
     <Route exact path="/profile">
       <Profile/>
     </Route>
-    <Route path="/create">
+    <Route exact path="/create">
       <CreatePost/>
     </Route>
-    <Route path="/profile/:userid">
+    <Route exact path="/profile/:userid">
       <UserProfile/>
     </Route>
-    <Route path="/myfollowingspost">
+    <Route exact path="/myfollowingspost">
       <Subscribedposts/>
     </Route>
     </Switch>
