@@ -7,14 +7,16 @@ const NavBars = ()=>{
   const history = useHistory()
   const [searchdetails,setSearchdetails] = useState([])
   const [isModalopen,setModalopen] = useState(false)
+  const [search,setSearch] = useState('')
   const searchusers = (users)=>{
+    setSearch(users)
     fetch("/search-user",{
       method:"post",
       headers:{
         "Content-Type":"application/json"
       },
       body:JSON.stringify({
-        name:users.toLowerCase()
+        name:search.toLowerCase()
       })
     }).then(res=>res.json()).then(result=>{
       console.log(result)
@@ -125,16 +127,18 @@ const NavBars = ()=>{
     }}
 
   >
-    <input type="text" placeholder="Search"  onChange={(e)=>{searchusers(e.target.value)}} />
+    <input type="text" placeholder="Search" value ={search} onChange={(e)=>{searchusers(e.target.value)}} />
         <ul className="collection">
           {searchdetails.map(item=>{
             return(
-              <Link to={item._id!=state._id?"/profile/"+item._id:"/profile"}  onClick={()=>setModalopen(false)} >
-                <li className="collection-item">
+              
+                <li className="collection-item" onClick={()=>{setModalopen(false);setSearch('');window.open(item._id!=state._id?"/profile/"+item._id:"/profile","_self")}}>
+                
                   <img src={item.pic} style={{width:"5%",border:"1px solid",borderColor:"#d966ff",borderRadius:"50%"}}/>
                   {item.name}
+                
                   </li>
-                  </Link>
+                  
               )
           })}
           
