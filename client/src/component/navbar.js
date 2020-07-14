@@ -132,7 +132,7 @@ const NavBars = ()=>{
           {searchdetails.map(item=>{
             return(
               
-                <li className="collection-item" onClick={()=>{setModalopen(false);setSearch('');window.open(item._id!=state._id?"/profile/"+item._id:"/profile","_self")}}>
+                <li className="collection-item" onClick={()=>{setModalopen(false);setSearch('');window.location.href(item._id!=state._id?"/profile/"+item._id:"/profile","_self")}}>
                 
                   <img src={item.pic} style={{width:"5%",border:"1px solid",borderColor:"#d966ff",borderRadius:"50%"}}/>
                   {item.name}
