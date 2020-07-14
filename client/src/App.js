@@ -31,22 +31,22 @@ const Routing = ()=>{
   return (
     <Switch>
     <Route exact path="/">
-      <Home></Home>
+      <Home/>
     </Route>
     <Route path="/signup">
-      <Signup></Signup>
+      <Signup/>
     </Route>
     <Route path="/signin">
-    <Signin></Signin>
+    <Signin/>
     </Route>
     <Route exact path="/profile">
-      <Profile></Profile>
+      <Profile/>
     </Route>
     <Route path="/create">
-      <CreatePost></CreatePost>
+      <CreatePost/>
     </Route>
     <Route path="/profile/:userid">
-      <UserProfile></UserProfile>
+      <UserProfile/>
     </Route>
     <Route path="/myfollowingspost">
       <Subscribedposts/>
@@ -63,7 +63,6 @@ function App() {
     <Navbars/>
     <Routing/>
     </BrowserRouter>
-    
     </UserContext.Provider>
   );
 }
