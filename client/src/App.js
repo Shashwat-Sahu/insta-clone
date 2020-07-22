@@ -10,7 +10,7 @@ import CreatePost from "./component/screens/createpost"
 import {reducer,initialState} from './reducers/userReduce'
 import UserProfile from "./component/screens/UserProfile"
 import Subscribedposts from "./component/screens/getsubcribedposts"
-
+import Forgot_password from "./component/screens/forgot_password"
 
 
 export const UserContext = createContext()
@@ -51,6 +51,7 @@ const Routing = ()=>{
     <Route exact path="/myfollowingspost">
       <Subscribedposts/>
     </Route>
+    <Route path="/forgot_password"><Forgot_password/></Route>
     </Switch>
   )
 }

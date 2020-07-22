@@ -76,7 +76,7 @@ const Signup = ()=>{
     return(
         <div className="mycard">
         <div className="card auth-card input-field">
-            <h2 className="brand-logo">Instagram Clone</h2>
+            <h2 className="brand-logo">Xprose DOM</h2>
             <input type="text" placeholder="name" value={name} onChange={(e)=>setName(e.target.value)}/>
             <input type="text" placeholder="email (Please type a false email since it is beta ver.)" value={email} onChange={(e)=>setEmail(e.target.value)} />
             <input type="password" placeholder="password (Please type a false password since it is beta ver.)" value={password} onChange={(e)=>setPassword(e.target.value)} />
@@ -95,6 +95,7 @@ const Signup = ()=>{
             <h6>
             <Link to="/signin" >Already have an account ?</Link>
             </h6>
+            <div></div>
             <div className="progress" id="progress-bar" style={{display: disp==1?"block":"none"}}>
           <div className="indeterminate"></div>
       </div>

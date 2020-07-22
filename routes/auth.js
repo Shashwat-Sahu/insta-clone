@@ -6,8 +6,34 @@ const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 const {JWT_SECRET} = require("../config/keys")
 const requiredLogin = require("../middleware/requireLogin")
+const nodemailer = require("nodemailer");
 
+router.post("/forgotpassword",(req,res)=>{
+    var nodemailer = require('nodemailer');
 
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'photographyxprose@gmail.com',
+    pass: '$TRON-ger1'
+  }
+});
+
+var mailOptions = {
+  from: 'no-reply@gmail.com',
+  to: 'shashwatsahu25@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'ok!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+})
 
 
 router.post("/signup",(req,res)=>{

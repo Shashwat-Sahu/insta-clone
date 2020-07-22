@@ -29,7 +29,7 @@ const NavBars = ()=>{
       
         <Navbar
   alignLinks="right"
-  brand={<Link to={state?"/":"/signin"} className="brand-logo">Instagram Clone</Link>}
+  brand={<Link to={state?"/":"/signin"} className="brand-logo">Xprose DOM</Link>}
   id="mobile-nav"
   menuIcon={<Icon>menu</Icon>}
   options={{
@@ -75,7 +75,7 @@ const NavBars = ()=>{
     else {
       return( <Navbar
         alignLinks="right"
-        brand={<Link to={state?"/":"/signin"} className="brand-logo">Instagram Clone</Link>}
+        brand={<Link to={state?"/":"/signin"} className="brand-logo">Xprose Dom</Link>}
         id="mobile-nav"
         menuIcon={<Icon>menu</Icon>}
         options={{
