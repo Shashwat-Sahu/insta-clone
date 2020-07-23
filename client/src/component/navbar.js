@@ -2,6 +2,8 @@ import React, { useCallback, useContext, useState } from 'react'
 import {Link, useHistory} from "react-router-dom"
 import {UserContext} from "../App"
 import {Navbar,NavItem,Icon,Modal,Button} from "react-materialize"
+
+
 const NavBars = ()=>{
   const {state,dispatch} = useContext(UserContext)
   const history = useHistory()
@@ -26,7 +28,8 @@ const NavBars = ()=>{
   const RenderList = () =>{
     if(state){
       return (
-      
+        <>
+        
         <Navbar
   alignLinks="right"
   brand={<Link to={state?"/":"/signin"} className="brand-logo">Xprose DOM</Link>}
@@ -43,7 +46,8 @@ const NavBars = ()=>{
     outDuration: 200,
     preventScrolling: true
   }}
-  className="white"
+  className="white setNav"
+  
 >
   <NavItem>
 
@@ -70,7 +74,9 @@ const NavBars = ()=>{
         localStorage.clear();
         dispatch({type:"CLEAR"})
         history.push("/signin")
-      }}>Logout</button></NavItem></Navbar>)
+      }}>Logout</button></NavItem></Navbar>
+      
+      </>)
     }
     else {
       return( <Navbar

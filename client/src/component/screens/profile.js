@@ -66,7 +66,7 @@ const Profile = ()=>{
         
     }
     return(
-        <div style={{maxWidth:"700px",margin:"0px auto",color:"white"}}>
+        <div style={{maxWidth:"700px",color:"white"}} className="profileBar">
             <div style={{
                     display:"flex",
                     justifyContent:"space-around",

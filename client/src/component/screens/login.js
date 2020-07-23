@@ -48,7 +48,7 @@ const Signin = ()=>{
             <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                     <button class="waves-effect waves-light btn #1565c0 blue darken-3 white-text" style={{marginBottom:"2%"}} onClick={()=>Postdata()}>Login</button>
                     <Link to="/forgot_password"><h6 style={{marginBottom:"5%"}}>Forgot Password ?</h6></Link>
-                    <div className="or-seperator" style={{borderBottom:"1px solid gray"}}><b style={{backgroundColor:"#fff", border:"1px solid grey",borderRadius:"50%",padding:"2%"}}>OR</b></div>
+                    <div className="or-seperator" style={{borderBottom:"1px solid gray"}}><b style={{backgroundColor:"#aaa", border:"1px solid grey",borderRadius:"50%",padding:"2%"}}>OR</b></div>
                     <a class="btn-floating btn-large waves-effect waves-light" style={{marginTop:"3%",margin:"5%",backgroundColor:"#507cc0"}}><i class="fab fa-facebook"></i></a>
                     <a class="btn-floating btn-large waves-effect waves-light red" style={{marginTop:"3%",margin:"5%"}}><i class="fab fa-google"></i></a>
                     <a class="btn-floating btn-large waves-effect waves-light" style={{marginTop:"3%",margin:"5%",backgroundColor:"#64ccf1"}}><i class="fab fa-twitter"></i></a>
@@ -57,6 +57,7 @@ const Signin = ()=>{
             </h6>
             
         </div>
+        
             </div>
     )
 }

@@ -10,27 +10,26 @@ const nodemailer = require("nodemailer");
 
 router.post("/forgotpassword",(req,res)=>{
     var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'photographyxprose@gmail.com',
-    pass: '$TRON-ger1'
-  }
-});
-
-var mailOptions = {
-  from: 'no-reply@gmail.com',
-  to: 'shashwatsahu25@gmail.com',
-  subject: 'Sending Email using Node.js',
-  text: 'ok!'
-};
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'noreplyn86@gmail.com',
+//     pass: '$ol-n1234'
+//   }
+// });
+// var x = ""+Math.floor(Math.random()*99)+Math.floor(Math.random()*99)+Math.floor(Math.random()*99);
+// var mailOptions = {
+//   from: 'noreplyn86@gmail.com',
+//   to: req.body.email,
+//   subject: 'Sending Email using Node.js',
+//   html:"<h1>Xprose DOM</h1><p>Here's your One-time-password "+x
+// };
 
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
-    console.log(error);
+    res.status.json(error);
   } else {
-    console.log('Email sent: ' + info.response);
+    res.json(x);
   }
 });
 })

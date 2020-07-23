@@ -11,7 +11,7 @@ import {reducer,initialState} from './reducers/userReduce'
 import UserProfile from "./component/screens/UserProfile"
 import Subscribedposts from "./component/screens/getsubcribedposts"
 import Forgot_password from "./component/screens/forgot_password"
-
+import ParticlesBg from "particles-bg"
 
 export const UserContext = createContext()
 const Routing = ()=>{
@@ -34,9 +34,13 @@ const Routing = ()=>{
       <Home/>
     </Route>
     <Route path="/signup">
+      
+      <ParticlesBg type="cobweb"  color="#ffffff" bg={true}/>
       <Signup/>
     </Route>
     <Route path="/signin">
+    
+    <ParticlesBg type="cobweb"  color="#ffffff" bg={true}/>
     <Signin/>
     </Route>
     <Route exact path="/profile">
@@ -51,7 +55,9 @@ const Routing = ()=>{
     <Route exact path="/myfollowingspost">
       <Subscribedposts/>
     </Route>
-    <Route path="/forgot_password"><Forgot_password/></Route>
+    <Route path="/forgot_password"><Forgot_password/>
+    <ParticlesBg type="cobweb"  color="#ffffff" bg={true}/>
+    </Route>
     </Switch>
   )
 }
@@ -61,8 +67,10 @@ function App() {
   return (
     <UserContext.Provider value={{state,dispatch}}>
     <BrowserRouter>
+    
     <Navbars/>
     <Routing/>
+    
     </BrowserRouter>
     </UserContext.Provider>
   );
