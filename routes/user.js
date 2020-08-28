@@ -70,4 +70,39 @@ router.post("/search-user",(req,res)=>{
         return res.status(422).json({error:err})
     }) 
 })
+
+router.get("/getchats",requiredLogin,(req,res)=>{
+    User.findById({_id:req.user._id}).then(data=>{
+        res.json(data.chats)
+    })
+})
+
+router.put("/addchats",requiredLogin,(req,res)=>{
+    User.findOne({_id:req.user._id,"chats.chat_person":req.body.chat_person}
+    ).then(result=>{
+        console.log(result)
+        if(!result)
+        {
+            console.log("a");
+            User.findOneAndUpdate({_id:req.user._id},{
+                $push:{chats:{chat_person:req.body.chat_person,chat_person_name:req.body.chat_person_name,messages:req.body.messages}}
+            },{new:true}).then(sender=>{
+                User.findOneAndUpdate({_id:req.body.chat_person},{$push:{chats:{chat_person:req.user._id,chat_person_name:req.user.name,messages:req.body.messages}}
+                },{new:true}).then(receiver=>{return res.json({message:"sent"})}).catch(err=>console.log(err))
+                
+            }).catch(err=>console.log(err))
+        }
+        else{
+            User.findOneAndUpdate({_id:req.user._id,"chats.chat_person":req.body.chat_person},{
+                "$push":{'chats.$.messages':{"sender":req.body.messages.sender,"sender_name":req.body.messages.sender_name,"message":req.body.messages.message}}
+            },{new:true}).then(sender=>{
+                User.findOneAndUpdate({_id:req.body.chat_person,"chats.chat_person":req.user._id},{
+                    "$push":{'chats.$.messages':{"sender":req.body.messages.sender,"sender_name":req.body.messages.sender_name,"message":req.body.messages.message}}
+                },{new:true}).then(receiver=>{console.log("b")
+                return res.json({message:"sent"})}).catch(err=>console.log(err))
+                
+            }).catch(err=>console.log(err))
+        }
+    })
+})
 module.exports = router

@@ -14,6 +14,7 @@ const CreatePost = () =>{
       data.append("file",image)
       data.append("upload_preset","insta-clone")
       data.append("cloud_name","xprose")
+      data.append("quality","auto:low")
       fetch("	https://api.cloudinary.com/v1_1/xprose/image/upload",{
         method:"post",
         body:data
@@ -56,7 +57,8 @@ const CreatePost = () =>{
         style={{margin:"10px auto",
         maxWidth:"500px",
         padding:"20px",
-        textAlign:"center"
+        textAlign:"center",
+        marginTop:"6%"
 }}
         >
               <h2 className="brand-logo">Create Post</h2>

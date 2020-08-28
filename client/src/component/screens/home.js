@@ -141,7 +141,11 @@ const Home = ()=>{
             console.log(err)
         })
     }
-    
+    function change_string (url){
+        var n = url.search("upload");
+        var final_url = url.slice(0,n+7)+"q_auto:eco/"+url.slice(n+7);
+        return final_url;  
+    }
             
     return(
         <>
@@ -166,7 +170,7 @@ const Home = ()=>{
                         <div className="card home-card" key={item._id}>
                             { item.postedby._id === state._id?<i className="material-icons" style={{cursor:"pointer",float:"right"}} onClick={()=>{console.log("hell");deletePost(item._id)}}>delete</i>:<i></i>}
                 <h5 style={{display:"inline-block"}}><Link to={item.postedby._id!=state._id?"/profile/"+item.postedby._id:"/profile"} >
-                    <img src={item.postedby.pic} style={{width:"8%",marginRight:"2%",borderRadius:"50%"}}/>{item.postedby.name}
+                    <img src={change_string(item.postedby.pic)} style={{width:"8%",marginRight:"2%",borderRadius:"50%"}}/>{item.postedby.name}
                     </Link></h5>
                
                 <div className="card-image">

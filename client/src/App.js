@@ -12,8 +12,18 @@ import UserProfile from "./component/screens/UserProfile"
 import Subscribedposts from "./component/screens/getsubcribedposts"
 import Forgot_password from "./component/screens/forgot_password"
 import ParticlesBg from "particles-bg"
-
+import Chatbox from "./component/screens/chatbox"
+ 
 export const UserContext = createContext()
+const Chat=()=>{
+  const {state,dispatch} = useContext(UserContext)
+  if(state){
+    return(<Chatbox/>)
+  }
+  else{
+    return(<></>)
+  }
+}
 const Routing = ()=>{
   const {state,dispatch} = useContext(UserContext)
   const history = useHistory()
@@ -70,7 +80,7 @@ function App() {
     
     <Navbars/>
     <Routing/>
-    
+    <Chat/>
     </BrowserRouter>
     </UserContext.Provider>
   );
