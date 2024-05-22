@@ -17,6 +17,7 @@ if(process.env.ENV==="production")
 {
     app.use(express.static('./build'))
     const path = require('path')
+    console.log("Production running")
     app.get("*",(req,res)=>{
         res.sendFile(path.resolve(__dirname,'build','index.html'))
     })
