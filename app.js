@@ -2,27 +2,27 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
-const {MONGOURI} = require("./config/keys")
 const cors = require('cors')
 
 require("./models/user")
 require("./models/post")
+require("dotenv").config();
 app.use(express.json())
 
 app.use(require("./routes/auth"))
 app.use(require("./routes/post"))
 app.use(require("./routes/user"))
 
-if(process.env.NODE_ENV==="production")
+if(process.env.ENV==="production")
 {
-    app.use(express.static('client/build'))
+    app.use(express.static('./build'))
     const path = require('path')
     app.get("*",(req,res)=>{
-        res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+        res.sendFile(path.resolve(__dirname,'build','index.html'))
     })
 }
 
-mongoose.connect(MONGOURI,{
+mongoose.connect(process.env.MONGOURI,{
     useNewUrlParser: true,
     useUnifiedTopology: true 
 })
