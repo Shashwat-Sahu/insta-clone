@@ -3,6 +3,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 const mongoose = require('mongoose')
 const cors = require('cors')
+const path = require('path')
 
 require("./models/user")
 require("./models/post")
@@ -15,8 +16,7 @@ app.use(require("./routes/user"))
 
 if(process.env.ENV==="production")
 {
-    app.use(express.static('./build'))
-    const path = require('path')
+    app.use(express.static(path.join(__dirname, 'build')))
     console.log("Production running")
     app.get("*",(req,res)=>{
         res.sendFile(path.resolve(__dirname,'build','index.html'))
